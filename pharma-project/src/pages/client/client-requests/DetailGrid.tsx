@@ -3,6 +3,7 @@ type StringTuple = [string, string]
 type DetailGridProps = {
     details: StringTuple[]
 }
+// Componente que muestra una lista de detalles en forma de grid
 export default function DetailGrid(props: DetailGridProps){
     return( 
         <div className="p-2">

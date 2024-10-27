@@ -9,6 +9,7 @@ import Title from "../../../components/ui/Title";
 //     request_state: string;
 // }
 
+// Pagina de solicitudes del cliente
 export default function ClientRequests() {
     const [requests, setRequests] = useState([]);
     useEffect(() => {
@@ -16,7 +17,7 @@ export default function ClientRequests() {
       }, []); // Array vacío: se ejecuta solo una vez
 
     const fetchPosts = async () => {
-        const response = await fetch('http://127.0.0.1:8000/requests');
+        const response = await fetch('https://pr-disenno-backend-production.up.railway.app/requests');
         const data = await response.json();
         console.log(data);
         setRequests(data);
@@ -37,6 +38,7 @@ export default function ClientRequests() {
                     requests.map((request: any) =>{
                         return <RequestRow 
                         key = {request.id} 
+                        request_id={request.id}
                         invoice_id={request.invoice_id} 
                         product_name={request.product_name}
                         request_state={request.request_state}/>

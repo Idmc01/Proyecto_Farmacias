@@ -1,43 +1,83 @@
-import Title from "../../../components/ui/Title"
-import DetailGrid from "./DetailGrid"
+import { useState, useEffect } from "react";
+import Title from "../../../components/ui/Title";
+import DetailGrid from "./DetailGrid";
 
-let IMAGE_URL:string = 'src/assets/'
+const IMAGE_URL = 'src/assets/';
 
 type ModalInspectRequestProps = {
-    show: boolean,
-    close: () => void
-}
+    requestId: number;
+    show: boolean;
+    close: () => void;
+};
 
 export default function ModalInspectRequest(props: ModalInspectRequestProps) {
-    if (!props.show)
-        return null
-    return (
-        <div className="fixed h-svh w-svw top-0 left-0 right-0 bottom-0 flex justify-center items-center">
-            <div onClick={props.close} className="fixed h-svh w-svw top-0 left-0 right-0 bottom-0 flex justify-center items-center z-10 bg-black bg-opacity-25"></div>
-            <div className="flex flex-col bg-green-3 rounded z-20">
-                <Title title="Request Details" green="1" className="p-3"></Title>
-                <div className="flex">
-                    <div>
-                        <DetailGrid details={[["Invoice ID:", "12312664"], 
-                                                ["Purchase Date:", "12/4/24"],
-                                                ["Request State:", "Accepted"],
-                                                ["Pharmacy:", "FarmaValue"]]}></DetailGrid>
-                        <Title title="Product" green="1" className="p-3"></Title>
-                        <DetailGrid details = {[["Name:", "Loratadina"],
-                                                ["Presentation:", "Capsules"],
-                                                ["Amount:", "5"],
-                                                ["Potential point gain:", "350"]]}></DetailGrid>
-                    </div>
-                    <div className="h-96 w-80 m-5" style={{
-                        backgroundImage: `url(${IMAGE_URL}factura-ejemplo.jpg)`,
-                        backgroundSize: 'contain',
-                        backgroundRepeat: 'no-repeat'
-                    }}>
+    const [request, setRequest] = useState<any>(null);
+    const [loading, setLoading] = useState(false);
 
-                    </div>
-                </div>
+    useEffect(() => {
+        if (props.show) {
+            fetchRequestDetails();
+        } else {
+            setRequest(null); // Reset request when modal is closed
+        }
+    }, [props.show]);
+
+    const fetchRequestDetails = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch(`https://pr-disenno-backend-production.up.railway.app/requests/${props.requestId}`);
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} ${response.statusText}`);
+            }
+            const data = await response.json();
+            setRequest(data);
+        } catch (error) {
+            console.error("Error fetching request details:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    if (!props.show) return null;
+
+    return (
+        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+            <div onClick={props.close} className="fixed inset-0 z-10"></div>
+            <div className="relative z-20 bg-green-3 rounded-lg shadow-lg p-6 w-full max-w-3xl">
+                <Title title="Request Details" green="1" className="mb-4" />
+                {loading ? (
+                    <strong className="text-green-1">Loading...</strong>
+                ) : (
+                    request && (
+                        <div className="flex gap-5">
+                            {/* Detalles del producto */}
+                            <div className="flex-grow">
+                                <DetailGrid
+                                    details={[
+                                        ["Invoice ID:", request.invoice_id || "N/A"], 
+                                        ["Purchase Date:", request.purchase_date || "N/A"],
+                                        ["Request State:", request.request_state || "N/A"],
+                                        ["Pharmacy:", request.pharmacy?.name || "N/A"] 
+                                    ]}
+                                />
+                                <Title title="Product" green="1" className="pt-4" />
+                                <DetailGrid
+                                    details={[
+                                        ["Name:", request.product?.name || "N/A"],
+                                        ["Presentation:", request.product.product_form || "N/A"],
+                                        ["Amount:", request.product_quantity || "N/A"],
+                                        ["Potential point gain:", request.product?.points_per_purchase * request.product_quantity || "N/A"] 
+                                    ]}
+                                />
+                            </div>
+                            {/* Imagen */}
+                            <div className="flex-shrink-0 h-96 w-80 bg-cover bg-no-repeat bg-center rounded-lg shadow-md" style={{
+                                backgroundImage: `url(${IMAGE_URL}factura-ejemplo.jpg)`
+                            }}></div>
+                        </div>
+                    )
+                )}
             </div>
         </div>
-
-    )
+    );
 }

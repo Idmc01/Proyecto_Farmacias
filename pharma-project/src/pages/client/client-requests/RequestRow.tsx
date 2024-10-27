@@ -3,11 +3,13 @@ import ButtonWithImage from "../../../components/ui/ButtonWithImage"
 import ModalInspectRequest from "./ModalInspectRequest";
 
 type RequestRowProps = {
+    request_id: number,
     invoice_id: string,
     product_name: string,
     request_state: string
 }
 
+// Componente que muestra una fila de solicitud
 export default function RequestRow(props: RequestRowProps) {
     const [showModal, setShowModal] = useState(false);
     return (
@@ -21,7 +23,7 @@ export default function RequestRow(props: RequestRowProps) {
                     <ButtonWithImage image_name='inspect-icon-green-3.png' action={() => setShowModal(true)}/>
                 </div>
             </div>
-            <ModalInspectRequest show={showModal} close={() => setShowModal(false)}/>
+            <ModalInspectRequest requestId={props.request_id} show={showModal} close={() => setShowModal(false)}/>
         </div>
 
     )
