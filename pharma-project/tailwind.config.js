@@ -9,7 +9,8 @@ export default {
       colors: {
         'green-1': '#C4DAD2',
         'green-2': '#6A9C89',
-        'green-3': '#16423C'
+        'green-3': '#16423C',
+        'modal-bg': 'rgba(0, 0, 0, 0.5)',
       },
       gridTemplateColumns: {
         'custom-1': 'repeat(8, minmax(100px, 100px))', // 1 columna
