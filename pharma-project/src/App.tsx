@@ -8,7 +8,7 @@ import ClientRecuperar from "./pages/client/client-logins/clientRecuperarContras
 import ClientRecuperarCodigo from "./pages/client/client-logins/clientRecuperarCodigo"
 import ClientRecuperarCodigoVerificacion from "./pages/client/client-logins/clientCodigoVerificacion"
 import AdminSolicitudPuntos from "./pages/admin/admin-solicitudPuntos/adminSolicitudPuntos"
-import AdminSolicitudPendiente from "./pages/admin/admin-solicitudPuntos/adminSolicitudPendiente"
+import AdminSolicitudPendiente from "./pages/admin/admin-solicitudPuntos/adminsolicitudPendiente"
 /*import AdminHomeScreen from "./pages/admin/admin-home-screen/AdminHomeScreen"
 import AdminRequests from "./pages/admin/admin-requests/AdminRequests"
 import AdminPharmacies from "./pages/admin/admin-pharmacies/AdminPharmacies"
