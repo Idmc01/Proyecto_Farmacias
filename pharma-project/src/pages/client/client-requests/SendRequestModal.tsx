@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Modal from "../../../components/ui/Modal";
 import Title from "../../../components/ui/Title";
-import PharmacyDropDown from "./PharmacyDropDown";
-import ProductDropDown from "./ProductDropDown";
+
 import Button from "../../../components/ui/Button";
+import PharmacyDropDown from "../../../components/PharmacyDropDown";
+import ProductDropDown from "../../../components/ProductDropDown";
 
 type SendRequestModalProps = {
     onClose: () => void;

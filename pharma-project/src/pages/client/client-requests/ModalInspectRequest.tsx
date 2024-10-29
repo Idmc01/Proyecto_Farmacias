@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Title from "../../../components/ui/Title";
-import DetailGrid from "./DetailGrid";
 import Modal from "../../../components/ui/Modal";
+import DetailGrid from "../../../components/DetailGrid";
 
 const IMAGE_URL = "src/assets/";
 

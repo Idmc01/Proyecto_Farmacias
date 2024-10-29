@@ -49,6 +49,7 @@ export default function ClientRequests() {
                 filter={true}
                 onSearchChange={setSearchValue}
                 onClickSearch={searchRequests}
+                onClickFilter={() => setOpen(true)}
             />
             <SendRequestModal
                 onClose={() => setOpen(false)}
