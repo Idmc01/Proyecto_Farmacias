@@ -9,6 +9,7 @@ import ClientRecuperarCodigo from "./pages/client/client-logins/clientRecuperarC
 import ClientRecuperarCodigoVerificacion from "./pages/client/client-logins/clientCodigoVerificacion"
 import AdminSolicitudPuntos from "./pages/admin/admin-solicitudPuntos/adminSolicitudPuntos"
 import AdminSolicitudPendiente from "./pages/admin/admin-solicitudPuntos/adminsolicitudPendiente"
+import ModalInspectRequest from "./pages/client/client-requests/ModalInspectRequest"
 /*import AdminHomeScreen from "./pages/admin/admin-home-screen/AdminHomeScreen"
 import AdminRequests from "./pages/admin/admin-requests/AdminRequests"
 import AdminPharmacies from "./pages/admin/admin-pharmacies/AdminPharmacies"
@@ -18,7 +19,7 @@ function App() {
   return (
 
     <>
-    <AdminSolicitudPendiente/>
+    <AdminSolicitudPendiente requestId={1} show={true} close={() => {}} />
 
 
 
