@@ -1,4 +1,4 @@
-export default function AdminRegister() {
+export default function Register() {
     return (
         <div className='flex flex-col justify-center items-center w-full h-screen'>
             <h1 className='text-5xl font-bold text-green-1 p-5'>Registrarse</h1>

@@ -7,7 +7,7 @@ type RequestRowProps = {
     client_name: string
 }
 
-export default function RequestRow(props: RequestRowProps) {
+export default function RequestRowAdmin(props: RequestRowProps) {
     return (
         <div>
             <div className="grid grid-cols-custom-1 gap-5 bg-green-1 p-4 w-auto items-center text-green-3">

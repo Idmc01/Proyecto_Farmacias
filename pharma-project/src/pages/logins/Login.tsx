@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function AdminLogin() {
+export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {

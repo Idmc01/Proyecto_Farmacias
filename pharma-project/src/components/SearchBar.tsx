@@ -3,6 +3,7 @@ import ButtonWithImage from "./ui/ButtonWithImage";
 type SearchBarProps = {
     place_holder: string;
     className?: string;
+    value: string;
     onClickSearch?: () => void;
     onClickFilter?: () => void;
     filter: boolean
@@ -20,6 +21,7 @@ export default function SearchBar(props: SearchBarProps) {
                 placeholder={props.place_holder}
                 className="font-bold bg-green-1 text-green-3 
                 placeholder:text-green-2 focus:outline-none w-full"
+                value={props.value}
                 onChange={(e) => props.onSearchChange(e.target.value)}
                 />
             </div>

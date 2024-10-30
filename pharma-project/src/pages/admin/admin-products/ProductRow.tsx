@@ -15,7 +15,7 @@ export default function ProductRow(props: ProductRowProps) {
                 <div className="col-span-2 overflow-hidden">{props.presentation}</div>
                 <div className="col-span-4 overflow-hidden">{props.belong_point_program}</div>
                 <div className="col-span-1 overflow-hidden">
-                    <ButtonWithImage image_name='see-icon-green.png'
+                    <ButtonWithImage image_name='inspect-icon-green-3.png'
                     action={props.onViewDetails}  // Pasamos la función onViewDetails
                     />
                 </div>

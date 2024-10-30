@@ -7,21 +7,11 @@ export default function EmergenteFarmacia() {
   // Funciones para abrir y cerrar el modal
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  
 
-  // Estados iniciales vacíos para datos dinámicos
-  const [nombre, setNombre] = useState("");
-  const [correo, setCorreo] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [ubicacion, setUbicacion] = useState("");
-  const [horario, setHorario] = useState("");
 
-  return (
-    <div className="h-screen bg-[#1A1A1A] flex items-center justify-center">
-      <button onClick={openModal} className="bg-white p-2 rounded">Abrir Ventana Emergente</button>
-
-      {isModalOpen && (
-        <div className="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="relative rounded-xl w-[350px] shadow-lg overflow-hidden">
+  return (        
+          <div>
             
             {/* Botón "X" de Cerrar */}
             <button
@@ -69,8 +59,8 @@ export default function EmergenteFarmacia() {
 
            
           </div>
-        </div>
-      )}
-    </div>
+        
+      
+    
   );
 }

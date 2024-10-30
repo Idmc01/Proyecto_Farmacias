@@ -2,10 +2,13 @@ import { useState } from 'react';
 import SearchBar from "../../../components/SearchBar";
 import ProductRow from "./ProductRow";
 import Modal from './ModalInspectProduct';  // Importamos el modal que creamos anteriormente
+import ClientNavbar from '../../../components/ClientNavbar';
+import Title from '../../../components/ui/Title';
 
 export default function ClientProducts() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<any>(null);
+    const [searchValue, setSearchValue] = useState<string>("");
 
     const openModal = (product: any) => {
         setSelectedProduct(product);
@@ -19,12 +22,14 @@ export default function ClientProducts() {
 
     return (
         <div className='flex flex-col justify-start items-center w-full'>
-            <SearchBar place_holder="Nombre del medicamento" filter={false}/>
+            <ClientNavbar/>
+            <Title title="Medicamentos" green="1" className="p-5"></Title>
+            <SearchBar place_holder="Nombre del medicamento" filter={false} value={searchValue} onSearchChange={setSearchValue}/>
 
             <div className="grid grid-cols-custom-1 gap-4 p-4 w-auto items-center text-green-1">
                     <div className="col-span-1">Nombre</div>
                     <div className="col-span-2">Presentación</div>
-                    <div className="col-span-2">Pertenece al programa de puntos</div>
+                    <div className="col-span-2">Programa de puntos</div>
                     <div className="col-span-2">Mi saldo</div>
             </div>
 

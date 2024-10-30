@@ -3,16 +3,20 @@ import SearchBar from "../../../components/SearchBar";
 import ProductRow from "./ProductRow";
 import Modal from './ModalInspectProduct';
 import ModalRegisterProgram from './ModalRegisterProgram';
+import AdminNavbar from '../../../components/AdminNavbar';
+import Title from '../../../components/ui/Title';
 
 export default function AdminProducts() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<any>(null);
+    const [searchValue, setSearchValue] = useState<string>("");
 
-    const openModal = (product: any) => {
+
+    function openModal(product: any) {
         setSelectedProduct(product);
         setIsModalOpen(true);
-    };
+    }
 
     const closeModal = () => {
         setIsModalOpen(false);
@@ -37,7 +41,9 @@ export default function AdminProducts() {
 
     return (
         <div className='flex flex-col justify-start items-center w-full'>
-            <SearchBar place_holder="Nombre del medicamento" filter={false}/>
+            <AdminNavbar/>
+            <Title title="Products" green='1' className='p-5'></Title>
+            <SearchBar place_holder="Nombre del medicamento" filter={false} onSearchChange={setSearchValue} value={searchValue}/>
 
             <div className="grid grid-cols-custom-1 gap-4 p-4 w-auto items-center text-green-1">
                 <div className="col-span-1">Nombre</div>

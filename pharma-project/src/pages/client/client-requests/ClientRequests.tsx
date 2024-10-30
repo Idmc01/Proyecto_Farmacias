@@ -3,6 +3,7 @@ import SearchBar from "../../../components/SearchBar";
 import RequestRow from "./RequestRow";
 import Title from "../../../components/ui/Title";
 import SendRequestModal from "./SendRequestModal";
+import ClientNavbar from "../../../components/ClientNavbar";
 // interface Request {
 //     id: number
 //     invoice_id: number;
@@ -43,6 +44,7 @@ export default function ClientRequests() {
     };
     return (
         <div className="flex flex-col justify-start items-center w-full">
+            <ClientNavbar/>
             <Title title="My Requests" green="1" className="p-5"></Title>
             <SearchBar
                 place_holder="Invoice ID"
