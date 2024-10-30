@@ -72,12 +72,12 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  position: relative;
 }
 
 .profile-icon img {
   width: 40px;
   height: 40px;
-  border-radius: 50%; /* Redondeado para un estilo más amigable */
   margin-left: 10px;
 }
 
@@ -91,7 +91,6 @@
   .profile-icon img {
     width: 40px;
     height: 40px;
-    border-radius: 50%; /* Ícono de perfil redondeado */
     margin-left: 10px; /* Espacio entre el ícono y el texto si lo hay */
   }
   

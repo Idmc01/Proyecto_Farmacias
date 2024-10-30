@@ -1,5 +1,5 @@
 // import './App.css'
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Login from "./pages/logins/Login";
 import AdminHomeScreen from "./pages/admin/admin-home-screen/AdminHomeScreen";
@@ -10,33 +10,50 @@ import AdminPharmacies from "./pages/admin/admin-pharmacies/AdminPharmacies";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import AdminProducts from "./pages/admin/admin-products/AdminProducts";
 import AdminRequests from "./pages/admin/admin-requests/AdminRequests";
+import Register from "./pages/logins/Register";
 
 
 
-export const UserContext = createContext<[any, React.Dispatch<React.SetStateAction<any>>] | null>(null);
+export const UserContext = createContext<[any, React.Dispatch<React.SetStateAction<any>>] | any>(null);
 const router = createBrowserRouter([
   {path: '/', element: <ProtectedRoute adminComponent={<AdminHomeScreen/>} clientComponent={<ClientHomeScreen/>} />},
   {path: '/login', element: <Login/>},
+  {path: '/register', element: <Register/>},
   {path: '/requests', element: <ProtectedRoute adminComponent={<AdminRequests/>} clientComponent={<ClientRequests/>} />},
   {path: '/products', element: <ProtectedRoute adminComponent={<AdminProducts/>} clientComponent={<ClientProducts/>} /> },
-  {path: '/pharmacies', element: <AdminPharmacies/>}
+  {path: '/pharmacies', element: <ProtectedRoute adminComponent={<AdminPharmacies/>} clientComponent={<ClientHomeScreen/>} />}
 ]);
 function App() {
-  // Variable global para el usuario logueado
-  // Uso: const [user, setUser] = useContext(UserContext)
-  // Y se trata como una variable normal, su contenido es un json con los datos del usuario
-  const [user, setUser] = useState<any>({
-    id: 3,
-    email: "user2@gmail.com",
-    name: "user2",
-    identification: "746104951",
-    is_admin: false
-  });
+  // Recupera el usuario almacenado en sessionStorage, permite hacer refresh sin perder la sesión del usuario. Se borra cuando se cierra el navegador.
+  const initialUser = JSON.parse(sessionStorage.getItem("user") || "null");
+
+
+  // COMENTAR ESTA LINEA PARA QUE FUNCIONE EL LOGIN, DESCOMENTAR LA DE ABAJO.  
+  // const [user, setUser] = useState<any>({
+  //   id: 1,
+  //   name: "admin",
+  //   email: "admin@gmail.com",
+  //   is_admin: false,
+  // });
+
+  // Usuario que se loguea
+  const [user, setUser] = useState<any>(initialUser);
+
+
+  // Actualiza sessionStorage cada vez que el usuario cambie
+  useEffect(() => {
+    if (user) {
+      sessionStorage.setItem("user", JSON.stringify(user));
+    } else {
+      sessionStorage.removeItem("user");
+    }
+  }, [user]);
+
   return (
     <UserContext.Provider value={[user, setUser]}>
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </UserContext.Provider>
-  )
+  );
 }
 
 

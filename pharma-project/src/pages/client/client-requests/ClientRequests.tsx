@@ -1,22 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SearchBar from "../../../components/SearchBar";
 import RequestRow from "./RequestRow";
 import Title from "../../../components/ui/Title";
 import SendRequestModal from "./SendRequestModal";
 import ClientNavbar from "../../../components/ClientNavbar";
-// interface Request {
-//     id: number
-//     invoice_id: number;
-//     product_name: string;
-//     request_state: string;
-// }
+import { UserContext } from "../../../App";
 
-// Pagina de solicitudes del cliente
 export default function ClientRequests() {
     const [requests, setRequests] = useState([]);
     const [open, setOpen] = useState(false);
     const [searchValue, setSearchValue] = useState<string>("");
     const [loading, setLoading] = useState(true);
+    
+    const [user] = useContext(UserContext);
 
     useEffect(() => {
         fetchRequests();
@@ -24,7 +20,7 @@ export default function ClientRequests() {
 
     const fetchRequests = async () => {
         const response = await fetch(
-            "https://pr-disenno-backend-production.up.railway.app/requests"
+            `https://pr-disenno-backend-production.up.railway.app/requests?user_id=${user.id}`
         );
         const data = await response.json();
         console.log(data);
@@ -38,7 +34,7 @@ export default function ClientRequests() {
             return;
         }
         const response = await fetch(
-            `https://pr-disenno-backend-production.up.railway.app/requests?invoice_id=${searchValue}`
+            `https://pr-disenno-backend-production.up.railway.app/requests?invoice_id=${searchValue}&user_id=${user.id}`
         );
         const data = await response.json();
         console.log(data);
@@ -53,7 +49,8 @@ export default function ClientRequests() {
                 filter={true}
                 onSearchChange={setSearchValue}
                 onClickSearch={searchRequests}
-                onClickFilter={() => setOpen(true)} value={""}            />
+                onClickFilter={() => setOpen(true)} 
+                value={searchValue}/>
             <SendRequestModal
                 onClose={() => setOpen(false)}
                 show={open}

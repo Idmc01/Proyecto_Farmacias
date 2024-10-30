@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Modal from "../../../components/ui/Modal";
 import Title from "../../../components/ui/Title";
 
 import Button from "../../../components/ui/Button";
 import PharmacyDropDown from "../../../components/PharmacyDropDown";
 import ProductDropDown from "../../../components/ProductDropDown";
+import { UserContext } from "../../../App";
 
 type SendRequestModalProps = {
     onClose: () => void;
@@ -19,6 +20,7 @@ export default function SendRequestModal(props: SendRequestModalProps) {
     const [quantity, setQuantity] = useState<number>(0);
     const [imageUploaded, setImageUploaded] = useState<boolean>(false);
     const [image, setImage] = useState<string>("");
+    const [user] = useContext(UserContext);
     
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
@@ -48,7 +50,7 @@ export default function SendRequestModal(props: SendRequestModalProps) {
                         product_id: selectedProductId,
                         product_quantity: quantity,
                         invoice_image: "imageBase64",
-                        user_id: 1
+                        user_id: user.id
                     })
                 }
             );
