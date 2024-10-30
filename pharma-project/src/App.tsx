@@ -6,9 +6,9 @@ export const UserContext = createContext<[any, React.Dispatch<React.SetStateActi
 function App() {
   const [user, setUser] = useState<any>(null)
   return (
-    <UserContext.Provider value={[user, setUser]}>
+    <>
       <ClientRequests />
-    </UserContext.Provider>
+    </>
   )
 }
 
