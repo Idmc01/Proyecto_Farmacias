@@ -1,6 +1,7 @@
 // AdminNavbar.tsx
 import React, { useState } from 'react';
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 const AdminNavbar: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -14,29 +15,28 @@ const AdminNavbar: React.FC = () => {
       <ul className="navbar-menu">
         <li className="navbar-item" onClick={() => toggleDropdown('farmacias')}>
           
-          Farmacias ▾
+          Pharmacies ▾
           {activeDropdown === 'farmacias' && (
             <ul className="dropdown-menu">
-              <li>Ver Farmacias</li>
+              <li><Link to='/pharmacies'>View Pharmacies</Link></li>
             </ul>
           )}
         </li>
 
         <li className="navbar-item" onClick={() => toggleDropdown('medicamentos')}>
-          Medicamentos ▾
+          Products ▾
           {activeDropdown === 'medicamentos' && (
             <ul className="dropdown-menu">
-              <li>Ver Medicamentos</li>
-              <li>Registrar Medicamentos</li>
+              <li><Link to='/products'>View Products</Link></li>
             </ul>
           )}
         </li>
 
         <li className="navbar-item" onClick={() => toggleDropdown('solicitudes')}>
-          Solicitudes ▾
+          Requests ▾
           {activeDropdown === 'solicitudes' && (
             <ul className="dropdown-menu">
-              <li>Ver Solicitudes</li>
+              <li><Link to='/requests'>View Requests</Link></li>
             </ul>
           )}
         </li>

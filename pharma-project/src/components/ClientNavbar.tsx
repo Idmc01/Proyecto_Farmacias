@@ -1,9 +1,12 @@
 // AdminNavbar.tsx
 import React, { useState } from 'react';
 import './Navbar.css';
+import { Link } from 'react-router-dom';
+import SendRequestModal from '../pages/client/client-requests/SendRequestModal';
 
 const ClientNavbar: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const toggleDropdown = (menu: string) => {
     setActiveDropdown(activeDropdown === menu ? null : menu);
@@ -14,20 +17,20 @@ const ClientNavbar: React.FC = () => {
       <ul className="navbar-menu">
         <li className="navbar-item" onClick={() => toggleDropdown('farmacias')}>
           
-          Solicitudes ▾
+          Requests ▾
           {activeDropdown === 'farmacias' && (
             <ul className="dropdown-menu">
-              <li>Ver Solicitudes</li>
-              <li>Enviar solicitud de Puntos</li>
+              <li><Link to='/requests'>View Requests</Link></li>
+              <li onClick={() => setShowModal(true)}>Enviar solicitud de Puntos</li>
             </ul>
           )}
         </li>
 
         <li className="navbar-item" onClick={() => toggleDropdown('medicamentos')}>
-          Medicamentos ▾
+          Products ▾
           {activeDropdown === 'medicamentos' && (
             <ul className="dropdown-menu">
-              <li>Ver Medicamentos</li>
+              <li><Link to='/products'>View Products</Link></li>
               
             </ul>
           )}
@@ -45,6 +48,7 @@ const ClientNavbar: React.FC = () => {
           </ul>
         )}
       </div>
+      <SendRequestModal show={showModal} onClose={() => setShowModal(false)}></SendRequestModal>
     </nav>
   );
 };
