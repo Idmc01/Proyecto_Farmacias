@@ -17,10 +17,10 @@ export default function ClientRequests() {
     const [searchValue, setSearchValue] = useState<string>("");
 
     useEffect(() => {
-        fetchPosts();
+        fetchRequests();
     }, []); // Array vacío: se ejecuta solo una vez
 
-    const fetchPosts = async () => {
+    const fetchRequests = async () => {
         const response = await fetch(
             "https://pr-disenno-backend-production.up.railway.app/requests"
         );
@@ -31,7 +31,7 @@ export default function ClientRequests() {
 
     const searchRequests = async () => {
         if (searchValue === "") {
-            fetchPosts();
+            fetchRequests();
             return;
         }
         const response = await fetch(

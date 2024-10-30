@@ -25,6 +25,5 @@ export default function RequestRow(props: RequestRowProps) {
             </div>
             <ModalInspectRequest requestId={props.request_id} show={showModal} close={() => setShowModal(false)}/>
         </div>
-
     )
 }
