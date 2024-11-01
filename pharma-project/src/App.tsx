@@ -11,6 +11,7 @@ import ProtectedRoute from "./utils/ProtectedRoute";
 import AdminProducts from "./pages/admin/admin-products/AdminProducts";
 import AdminRequests from "./pages/admin/admin-requests/AdminRequests";
 import Register from "./pages/logins/Register";
+import AdminRecuperar from "./pages/logins/adminRecuperarContrasenna";
 
 
 
@@ -21,7 +22,9 @@ const router = createBrowserRouter([
   {path: '/register', element: <Register/>},
   {path: '/requests', element: <ProtectedRoute adminComponent={<AdminRequests/>} clientComponent={<ClientRequests/>} />},
   {path: '/products', element: <ProtectedRoute adminComponent={<AdminProducts/>} clientComponent={<ClientProducts/>} /> },
-  {path: '/pharmacies', element: <ProtectedRoute adminComponent={<AdminPharmacies/>} clientComponent={<ClientHomeScreen/>} />}
+  {path: '/pharmacies', element: <ProtectedRoute adminComponent={<AdminPharmacies/>} clientComponent={<ClientHomeScreen/>} />},
+  {path: '/change-password', element: <AdminRecuperar/>},
+  {path: '*', element: <div className="text-green-1 text-3xl font-bold absolute">404 Not Found</div>}
 ]);
 function App() {
   // Recupera el usuario almacenado en sessionStorage, permite hacer refresh sin perder la sesión del usuario. Se borra cuando se cierra el navegador.
