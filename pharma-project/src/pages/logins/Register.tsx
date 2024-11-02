@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../../App";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
     
 export default function Register() {
     const navigate = useNavigate();
@@ -8,7 +8,7 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [identification, setIdentification] = useState('');
     const [name, setName] = useState('');
-    const [user, setUser] = useContext(UserContext);
+    const [, setUser] = useContext(UserContext);
 
     async function handleRegister() {
         console.log("Sending request...");
@@ -54,7 +54,7 @@ export default function Register() {
                 <input type="password" placeholder="Contraseña" className="border border-green-1 p-2 text-lg rounded bg-green-1" onChange={(e) => setPassword(e.target.value)} />
                 <button className="bg-orange-500 text-white rounded p-2 text-lg" onClick={() => handleRegister()}>Registrarse</button>
                 <div className="flex justify-center">
-                    <a href="#" className="text-green-1 text-sm mb-7">Iniciar sesión</a>
+                    <Link className="text-green-1 text-sm mb-7"  to="/login">Iniciar sesión</Link>
                 </div>
             </div>
         </div>

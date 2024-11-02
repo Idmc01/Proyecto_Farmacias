@@ -1,13 +1,13 @@
 import { useContext, useState } from 'react';
 import { UserContext } from '../../App';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    const [user, setUser] = useContext(UserContext);
+    const [, setUser] = useContext(UserContext);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -68,7 +68,7 @@ export default function Login() {
                         {showPassword ? '🙈' : '👁️'}
                     </button>
                 </div>
-                <a href="#" className="text-green-1 text-sm mb-7">Olvidé mi contraseña.</a>
+                <Link className="text-green-1 text-sm mb-7" to="/recover-password">Olvidé mi contraseña.</Link>
                 <button className="bg-red-500 text-white rounded p-2 text-lg" onClick={() => handleLogin()}>Iniciar sesión</button>
                 <button children="Registrarse" className="bg-green-1 text-white  rounded p-2 text-lg" onClick={()=>navigate('/register')}/>
             </div>

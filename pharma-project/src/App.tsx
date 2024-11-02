@@ -11,9 +11,7 @@ import ProtectedRoute from "./utils/ProtectedRoute";
 import AdminProducts from "./pages/admin/admin-products/AdminProducts";
 import AdminRequests from "./pages/admin/admin-requests/AdminRequests";
 import Register from "./pages/logins/Register";
-import AdminRecuperar from "./pages/logins/adminRecuperarContrasenna";
-
-
+import PasswordRecovery from "./pages/logins/PasswordRecovery";
 
 export const UserContext = createContext<[any, React.Dispatch<React.SetStateAction<any>>] | any>(null);
 const router = createBrowserRouter([
@@ -23,7 +21,7 @@ const router = createBrowserRouter([
   {path: '/requests', element: <ProtectedRoute adminComponent={<AdminRequests/>} clientComponent={<ClientRequests/>} />},
   {path: '/products', element: <ProtectedRoute adminComponent={<AdminProducts/>} clientComponent={<ClientProducts/>} /> },
   {path: '/pharmacies', element: <ProtectedRoute adminComponent={<AdminPharmacies/>} clientComponent={<ClientHomeScreen/>} />},
-  {path: '/change-password', element: <AdminRecuperar/>},
+  {path: '/recover-password', element: <PasswordRecovery/>},
   {path: '*', element: <div className="text-green-1 text-3xl font-bold absolute">404 Not Found</div>}
 ]);
 function App() {
