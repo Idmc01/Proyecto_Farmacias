@@ -4,10 +4,9 @@ type ModalProps = {
     show: boolean;
     onClose: () => void;
     medicineName: string;
-    presentation: string;
     hasPointsProgram: boolean;
     price: number;
-    pointsBalance: number;
+    pointsPerPurchase: number;
     pointsForRedemption: number;
     description: string;
     onRegisterPointsProgram: () => void;
@@ -17,10 +16,9 @@ export default function Modal({
     show,
     onClose,
     medicineName,
-    presentation,
     hasPointsProgram,
     price,
-    pointsBalance,
+    pointsPerPurchase,
     pointsForRedemption,
     description,
     onRegisterPointsProgram
@@ -44,7 +42,6 @@ export default function Modal({
                     {/* Detalles del medicamento */}
                     <div className="w-2/3">
                         <div className="grid grid-cols-2 gap-4">
-                            <div><strong>Presentación:</strong> {presentation}</div>
                             <div><strong>Precio:</strong> ${price.toFixed(2)}</div>
                             <div><strong>Descripción:</strong> {description}</div>
                         </div>
@@ -68,7 +65,7 @@ export default function Modal({
                             {/* Detalles del programa de puntos */}
                             {hasPointsProgram && (
                                 <div className="mt-4 grid grid-cols-2 gap-4">
-                                    <div><strong>Saldo de puntos:</strong> {pointsBalance}</div>
+                                    <div><strong>Puntos a obtener por compra:</strong> {pointsPerPurchase}</div>
                                     <div><strong>Puntos para regalo:</strong> {pointsForRedemption}</div>
                                 </div>
                             )}

@@ -4,7 +4,6 @@ type ModalProps = {
     medicineName: string;  // El nombre del medicamento
     pointsBalance: number;  // Saldo de puntos
     pointsForRedemption: number;  // Puntos para canjear
-    presentation: string;  // Presentación del medicamento
     hasPointsProgram: boolean;  // Si tiene programa de puntos
     price: number;  // Precio del medicamento
     description: string;  // Descripción del medicamento
@@ -16,7 +15,6 @@ type ModalProps = {
     medicineName, 
     pointsBalance, 
     pointsForRedemption, 
-    presentation, 
     hasPointsProgram, 
     price, 
     description 
@@ -48,7 +46,6 @@ type ModalProps = {
   
           {/* Detalles del Medicamento */}
           <div className="bg-green-300 text-black p-4 rounded-lg">
-            <p><strong>Presentación:</strong> {presentation}</p>
             <p><strong>Programa de puntos:</strong> {hasPointsProgram ? "Sí" : "No"}</p>
             <p><strong>Precio:</strong> {price} colones</p>
             

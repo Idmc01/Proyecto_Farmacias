@@ -30,15 +30,15 @@ function App() {
 
 
   // COMENTAR ESTA LINEA PARA QUE FUNCIONE EL LOGIN, DESCOMENTAR LA DE ABAJO.  
-  // const [user, setUser] = useState<any>({
-  //   id: 1,
-  //   name: "admin",
-  //   email: "admin@gmail.com",
-  //   is_admin: false,
-  // });
+   const [user, setUser] = useState<any>({
+     id: 1,
+     name: "admin",
+     email: "admin@gmail.com",
+     is_admin: false,
+   });
 
   // Usuario que se loguea
-  const [user, setUser] = useState<any>(initialUser);
+  //const [user, setUser] = useState<any>(initialUser);
 
 
   // Actualiza sessionStorage cada vez que el usuario cambie

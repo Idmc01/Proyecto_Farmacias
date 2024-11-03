@@ -4,22 +4,55 @@ import Title from "../../../components/ui/Title";
 type ModalRegisterProgramProps = {
     show: boolean;
     onClose: () => void;
+    productId: string;
     medicineName: string;
     presentation: string;
-    onConfirm: (pointsForGift: number, pointsPerPurchase: number) => void;
+    onUpdate: (updatedProduct: any) => void;
 };
 
 export default function ModalRegisterProgram({
     show,
     onClose,
+    productId,
     medicineName,
     presentation,
-    onConfirm,
+    onUpdate,
 }: ModalRegisterProgramProps) {
-    const [pointsForGift, setPointsForGift] = useState(0); // Estado para los puntos necesarios para regalo
-    const [pointsPerPurchase, setPointsPerPurchase] = useState(0); // Estado para los puntos otorgados por compra
+    const [pointsForRedemption, setPointsForRedemption] = useState<number>(0); // Estado para los puntos necesarios para regalo
+    const [pointsPerPurchase, setPointsPerPurchase] = useState<number>(0); // Estado para los puntos otorgados por compra
+    const [loading, setLoading] = useState(false);
 
     if (!show) return null;
+
+    const handleConfirm = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch(`https://pr-disenno-backend-production.up.railway.app/products/${productId}/program`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    points_for_redemption: pointsForRedemption,
+                    points_per_purchase: pointsPerPurchase
+                })
+            });
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Error en la respuesta de la API:', errorText);
+                throw new Error('Error al actualizar el producto');
+            }
+    
+            const updatedProduct = await response.json();
+            console.log('Producto actualizado:', updatedProduct); // Verifica si el producto contiene los datos correctos
+            onUpdate(updatedProduct); // Actualizar el producto en el componente principal
+            onClose(); // Cerrar el modal
+        } catch (error) {
+            console.error('Error al registrar al programa de puntos:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
@@ -40,8 +73,8 @@ export default function ModalRegisterProgram({
                         <input
                             type="number"
                             id="pointsForGift"
-                            value={pointsForGift}
-                            onChange={(e) => setPointsForGift(Number(e.target.value))}
+                            value={pointsForRedemption}
+                            onChange={(e) => setPointsForRedemption(Number(e.target.value))}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md"
                             placeholder="Ingrese puntos necesarios para el regalo"
                         />
@@ -67,10 +100,9 @@ export default function ModalRegisterProgram({
                         Cancelar
                     </button>
                     <button
-                        className="bg-green-1 text-white py-2 px-4 rounded"
-                        onClick={() => onConfirm(pointsForGift, pointsPerPurchase)}
+                        onClick={handleConfirm} className="px-4 py-2 bg-green-600 text-white rounded" disabled={loading}
                     >
-                        Confirmar
+                       {loading ? 'Registrando...' : 'Confirmar'}
                     </button>
                 </div>
             </div>
