@@ -1,3 +1,5 @@
+/*
+
 import { useState, useEffect } from "react";
 import Title from "../../../components/ui/Title";
 import DetailGrid from "./DetailGrid1";
@@ -50,7 +52,7 @@ export default function ModalInspectRequest(props: ModalInspectRequestProps) {
                 ) : (
                     request && (
                         <div className="flex gap-5">
-                            {/* Detalles del producto */}
+                            {/* Detalles del producto 
                             <div className="flex-grow">
                                 <DetailGrid
                                     details={[
@@ -70,7 +72,7 @@ export default function ModalInspectRequest(props: ModalInspectRequestProps) {
                                     ]}
                                 />
                             </div>
-                            {/* Imagen */}
+                            {/* Imagen *
                             <div className="flex-shrink-0 h-96 w-80 bg-cover bg-no-repeat bg-center rounded-lg shadow-md" style={{
                                 backgroundImage: `url(${IMAGE_URL}factura-ejemplo.jpg)`
                             }}></div>
@@ -81,3 +83,4 @@ export default function ModalInspectRequest(props: ModalInspectRequestProps) {
         </div>
     );
 }
+*/
