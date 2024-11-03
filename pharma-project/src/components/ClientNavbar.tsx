@@ -8,7 +8,7 @@ import { UserContext } from '../App';
 const ClientNavbar: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [user, setUser] = useContext(UserContext);
+  const [, setUser] = useContext(UserContext);
   const navigate = useNavigate();
 
   const toggleDropdown = (menu: string) => {

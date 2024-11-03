@@ -6,7 +6,7 @@ import { UserContext } from '../App';
 
 const AdminNavbar: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [user, setUser] = useContext(UserContext);
+  const [, setUser] = useContext(UserContext);
   const navigate = useNavigate();
 
   const toggleDropdown = (menu: string) => {

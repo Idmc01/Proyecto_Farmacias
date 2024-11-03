@@ -1,5 +1,3 @@
-import React from 'react';
-
 type PharmacyInfoProps = {
     name: string;
     email: string;

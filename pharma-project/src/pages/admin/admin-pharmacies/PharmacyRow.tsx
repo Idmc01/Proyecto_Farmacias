@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ButtonWithImage from "../../../components/ui/ButtonWithImage";
 import EmergenteFarmacia from "./EmergenteFarmacia";
 
