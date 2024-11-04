@@ -62,6 +62,7 @@ export default function SendRequestModal(props: SendRequestModalProps) {
             }
         }
     };
+    
     return (
         <Modal show={props.show} onClose={props.onClose}>
             <Title title="Points Request" green="1" className="p-2" />

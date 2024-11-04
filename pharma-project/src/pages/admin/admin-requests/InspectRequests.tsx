@@ -11,7 +11,8 @@ type ModalInspectRequestProps = {
     close: () => void;
 };
 
-export default function ClientRequests(props: ModalInspectRequestProps) {
+
+export default function InspectRequests(props: ModalInspectRequestProps) {
     const [request, setRequest] = useState<any>(null);
     const [loading, setLoading] = useState(false);
 
@@ -41,6 +42,28 @@ export default function ClientRequests(props: ModalInspectRequestProps) {
         } finally {
             setLoading(false);
         }
+    };
+    const acceptRequest = async () => {
+            const response = await fetch(
+                `https://pr-disenno-backend-production.up.railway.app/requests/${props.requestId}/state`,
+                
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json" 
+                    },
+                    body: JSON.stringify({
+                        request_state: "Accepted",
+                    })
+                }
+            );
+            if (response.ok) {
+                alert("Request sent successfully");
+                props.close();
+            } else {
+                alert("Error sending request");
+            }
+        
     };
     
     return (
@@ -113,10 +136,13 @@ export default function ClientRequests(props: ModalInspectRequestProps) {
                 )
             )}
             {/* Botones Aceptar y Rechazar */}
+            {request && request.request_state === "Pending" && (
             <div className="flex justify-center mt-4 space-x-4">
                 <button className="bg-red-500 text-white p-2 rounded">Rechazar</button>
-                <button className="bg-green-500 text-white p-2 rounded">Aceptar</button>
+                <button onClick={acceptRequest} className="bg-green-500 text-white p-2 rounded">Aceptar</button>
             </div>
+            )
+            }
         </Modal>
     );
 }

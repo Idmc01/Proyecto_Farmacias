@@ -23,6 +23,7 @@ const router = createBrowserRouter([
   {path: '/pharmacies', element: <ProtectedRoute adminComponent={<AdminPharmacies/>} clientComponent={<ClientHomeScreen/>} />},
   {path: '/recover-password', element: <PasswordRecovery/>},
   {path: '*', element: <div className="text-green-1 text-3xl font-bold absolute">404 Not Found</div>}
+  
 ]);
 function App() {
   // Recupera el usuario almacenado en sessionStorage, permite hacer refresh sin perder la sesión del usuario. Se borra cuando se cierra el navegador.
@@ -30,15 +31,15 @@ function App() {
 
 
   // COMENTAR ESTA LINEA PARA QUE FUNCIONE EL LOGIN, DESCOMENTAR LA DE ABAJO.  
-  //  const [user, setUser] = useState<any>({
-  //    id: 1,
-  //    name: "admin",
-  //    email: "admin@gmail.com",
-  //    is_admin: true,
-  //  });
+  // const [user, setUser] = useState<any>({
+  //   id: 1,
+  //   name: "admin",
+  //   email: "admin@gmail.com",
+  //   is_admin: false,
+  // });
 
   // Usuario que se loguea
- const [user, setUser] = useState<any>(initialUser);
+  const [user, setUser] = useState<any>(initialUser);
 
 
   // Actualiza sessionStorage cada vez que el usuario cambie
