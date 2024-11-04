@@ -33,7 +33,7 @@ export default function AdminRequests() {
             return;
         }
         const response = await fetch(
-            `https://pr-disenno-backend-production.up.railway.app/requests?invoice_id=${searchValue}&user_id=${user.id}`
+            `https://pr-disenno-backend-production.up.railway.app/requests?invoice_id=${searchValue}`
         );
         const data = await response.json();
         console.log(data);
