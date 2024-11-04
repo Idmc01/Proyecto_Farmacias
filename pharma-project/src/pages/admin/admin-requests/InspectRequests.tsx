@@ -58,10 +58,10 @@ export default function InspectRequests(props: ModalInspectRequestProps) {
                 }
             );
             if (response.ok) {
-                alert("Request sent successfully");
+                alert("Request accepted successfully");
                 props.close();
             } else {
-                alert("Error sending request");
+                alert("Error accepting request");
             }
         
     };
@@ -80,10 +80,10 @@ export default function InspectRequests(props: ModalInspectRequestProps) {
             }
         );
         if (response.ok) {
-            alert("Request sent successfully");
+            alert("Request rejected successfully");
             props.close();
         } else {
-            alert("Error sending request");
+            alert("Error rejecting request");
         }
     
 };

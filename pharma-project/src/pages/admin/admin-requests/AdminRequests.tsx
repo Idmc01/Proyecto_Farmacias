@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "../../../components/SearchBar";
 // import RequestRowAdmin from "./RequestRowAdmin";
 import AdminNavbar from "../../../components/AdminNavbar";
-import { UserContext } from "../../../App";
 import SendRequestModal from '../../client/client-requests/SendRequestModal';
 import Title from "../../../components/ui/Title";
 import RequestRowAdmin from "./RequestRowAdmin";
@@ -13,8 +12,6 @@ export default function AdminRequests() {
     const [searchValue, setSearchValue] = useState<string>("");
     const [loading, setLoading] = useState(true);
     
-    const [user] = useContext(UserContext);
-
     useEffect(() => {
         fetchRequests();
     }, []); // Array vacío: se ejecuta solo una vez

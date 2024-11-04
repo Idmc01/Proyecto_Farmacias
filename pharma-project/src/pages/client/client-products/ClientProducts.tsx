@@ -12,7 +12,7 @@ export default function ClientProducts() {
     const [searchValue, setSearchValue] = useState<string>("");
     const [products, setProducts] = useState<any[]>([]);
     const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
-    const [user, setUser] = useContext(UserContext)
+    const [user] = useContext(UserContext)
 
     useEffect(() => {
         // Función para obtener productos de la API
