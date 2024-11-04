@@ -1,14 +1,14 @@
 // AdminNavbar.tsx
 import React, { useContext, useState } from 'react';
 import './Navbar.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SendRequestModal from '../pages/client/client-requests/SendRequestModal';
 import { UserContext } from '../App';
 
 const ClientNavbar: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [user, setUser] = useContext(UserContext);
+  const [, setUser] = useContext(UserContext);
   const navigate = useNavigate();
 
   const toggleDropdown = (menu: string) => {
@@ -28,8 +28,8 @@ const ClientNavbar: React.FC = () => {
           Requests ▾
           {activeDropdown === 'farmacias' && (
             <ul className="dropdown-menu">
-              <li><Link to='/requests'>View Requests</Link></li>
-              <li onClick={() => setShowModal(true)}>Enviar solicitud de Puntos</li>
+              <li onClick={() => navigate('/requests')}>View Requests</li>
+              <li onClick={() => setShowModal(true)}>Send points request</li>
             </ul>
           )}
         </li>
@@ -38,7 +38,7 @@ const ClientNavbar: React.FC = () => {
           Products ▾
           {activeDropdown === 'medicamentos' && (
             <ul className="dropdown-menu">
-              <li><Link to='/products'>View Products</Link></li>
+              <li onClick={() => navigate('/products')}>View Products</li>
               
             </ul>
           )}

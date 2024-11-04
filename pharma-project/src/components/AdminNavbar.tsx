@@ -1,12 +1,12 @@
 // AdminNavbar.tsx
 import React, { useContext, useState } from 'react';
 import './Navbar.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../App';
 
 const AdminNavbar: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [user, setUser] = useContext(UserContext);
+  const [, setUser] = useContext(UserContext);
   const navigate = useNavigate();
 
   const toggleDropdown = (menu: string) => {
@@ -26,7 +26,7 @@ const AdminNavbar: React.FC = () => {
           Pharmacies ▾
           {activeDropdown === 'farmacias' && (
             <ul className="dropdown-menu">
-              <li><Link to='/pharmacies'>View Pharmacies</Link></li>
+              <li onClick={() => navigate('/pharmacies')}>View Pharmacies</li>
             </ul>
           )}
         </li>
@@ -35,7 +35,7 @@ const AdminNavbar: React.FC = () => {
           Products ▾
           {activeDropdown === 'medicamentos' && (
             <ul className="dropdown-menu">
-              <li><Link to='/products'>View Products</Link></li>
+              <li onClick={() => navigate('/products')}>View Products</li>
             </ul>
           )}
         </li>
@@ -44,7 +44,7 @@ const AdminNavbar: React.FC = () => {
           Requests ▾
           {activeDropdown === 'solicitudes' && (
             <ul className="dropdown-menu">
-              <li><Link to='/requests'>View Requests</Link></li>
+              <li onClick={() => navigate('/requests')}>View Requests</li>
             </ul>
           )}
         </li>
