@@ -1,16 +1,20 @@
-import React from 'react';
-
 type ButtonWithImageProps = {
-    image_name: string;
-    action: () => void;
-};
+    image_name: string
+    action?: () => void
+}
 
-const ButtonWithImage: React.FC<ButtonWithImageProps> = ({ image_name, action }) => {
+let IMAGE_URL:string = 'src/assets/'
+
+export default function ButtonWithImage(props: ButtonWithImageProps){
     return (
-        <button onClick={action}>
-            <img src={image_name} alt="" style={{ width: '24px', height: '24px' }} />
-        </button>
+        <button 
+            onClick={props.action}
+            className="bg-cover w-9 h-8" 
+            style={{
+                backgroundImage: `url(${IMAGE_URL}${props.image_name})`,
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat'
+            }}
+        ></button>
     );
-};
-
-export default ButtonWithImage;
+}
