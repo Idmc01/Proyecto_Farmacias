@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ButtonWithImage from "../../../components/ui/ButtonWithImage";
 import EmergenteFarmacia from "./EmergenteFarmacia";
+import imagen from "../../../assets/inspect-icon-green-3.png";
 
 type PharmacyRowProps = {
     pharmacy_id: number;
@@ -21,7 +22,7 @@ export default function PharmacyRow(props: PharmacyRowProps) {
                 <div className="col-span-2 overflow-hidden">{props.pharmacyContact_number}</div>
                 <div className="col-span-3 overflow-hidden"></div>
                 <div className="col-span-1 overflow-hidden">
-                    <ButtonWithImage image_name="inspect-icon-green-3.png" action={() => setShowModal(true)} />
+                    <ButtonWithImage image_name={imagen} action={() => setShowModal(true)} />
                 </div>
             </div>
             {showModal && (
